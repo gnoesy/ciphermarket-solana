@@ -77,3 +77,7 @@ This is a structural prototype exploring encrypted execution in prediction marke
 Not production-ready.
 
 Built for Arcium RTG.
+
+## UI Mock
+
+![CipherMarket UI](ciphermarket-ui.png)
