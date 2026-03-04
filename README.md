@@ -1,5 +1,7 @@
 # CipherMarket (Solana + Arcium)
 
+> CipherMarket explores how encrypted execution can restore independent belief formation in prediction markets.
+
 CipherMarket is a confidential prediction market prototype built on Solana using Arcium encrypted compute.
 
 Traditional prediction markets expose signals in real time.
@@ -93,7 +95,18 @@ This is a structural prototype exploring encrypted execution in prediction marke
 Not production-ready.
 
 Built for Arcium RTG.
-
+---
 ## UI Mock
 
 ![CipherMarket UI](ciphermarket-ui.png)
+---
+## Related Experiments
+
+CipherMarket is part of a broader exploration of execution confidentiality using Arcium.
+
+Other experiments built around the same idea:
+
+- **ShieldLend** — confidential lending where LTV and liquidation logic execute privately
+- **SealedBid** — blind auctions where bids remain encrypted until resolution
+
+Each explores how encrypted compute can reduce adversarial behavior while preserving transparent settlement.
