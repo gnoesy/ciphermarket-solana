@@ -55,6 +55,22 @@ Solana handles settlement.
 
 ---
 
+## Execution vs Settlement
+
+CipherMarket separates execution confidentiality from settlement transparency.
+
+Prediction markets typically expose intermediate signals during execution.
+
+CipherMarket moves this execution layer into Arcium's encrypted compute environment.
+
+Participants submit encrypted predictions.
+
+Arcium processes market logic privately.
+
+Only the final outcome is revealed on-chain.
+
+---
+
 ## Execution Flow
 
 User prediction  
