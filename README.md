@@ -67,7 +67,7 @@ Outcome revealed
 ↓  
 Solana settlement
 
-![CipherMarket Architecture](CipherMarketarchitecture.png)
+![CipherMarket Architecture](architectureciphermarket.png)
 ---
 
 ## Disclaimer
