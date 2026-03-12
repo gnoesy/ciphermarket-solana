@@ -2,7 +2,7 @@
 {"ts":"2026-03-12T17:40:10+09:00","stage":"P0","action":"run","pattern":"A","status":"ok","tx_hash":"demo_placeholder_A"}
 {"ts":"2026-03-12T17:40:20+09:00","stage":"P0","action":"run","pattern":"B","status":"ok","tx_hash":"demo_placeholder_B"}
 {"ts":"2026-03-12T17:40:30+09:00","stage":"P0","action":"run","pattern":"C","status":"ok","tx_hash":"demo_placeholder_C"}
-{"ts":"2026-03-12T17:42:00+09:00","stage":"P0","action":"run","network":"devnet","pattern":"A","status":"ok","tx_hash":"여기에_진짜_txhash_A","note":"sample"}
-{"ts":"2026-03-12T17:42:10+09:00","stage":"P0","action":"run","network":"devnet","pattern":"B","status":"ok","tx_hash":"여기에_진짜_txhash_B","note":"sample"}
-{"ts":"2026-03-12T17:42:20+09:00","stage":"P0","action":"run","network":"devnet","pattern":"C","status":"ok","tx_hash":"여기에_진짜_txhash_C","note":"sample"}
+{"ts":"2026-03-12T17:42:00+09:00","stage":"P0","action":"run","network":"devnet","pattern":"A","status":"ok","tx_hash":"2rgVqW7T3bRyVrWL1Q1CH9KSGFfXwmneHkXdcr1xQ7rKuU6gMB59iUZXFn6FzTEFm1Kp5yaY11SZG5F63xphaXY1","note":"sample"}
+{"ts":"2026-03-12T17:42:10+09:00","stage":"P0","action":"run","network":"devnet","pattern":"B","status":"ok","tx_hash":"67bKhxM37eMTeBFTzdLqsh5vpPZEoDkX58JLsBD52vCVAyUxCPGSeiZMQdmWS6gN72KajUU5HRFwGRfPumPLkcww","note":"sample"}
+{"ts":"2026-03-12T17:42:20+09:00","stage":"P0","action":"run","network":"devnet","pattern":"C","status":"ok","tx_hash":"2kuFEsopLXAr6YrjWoDVWzv3pvhqg183fbbZfMZhCXRCqDkXfCJN4vwtbLLRRVwc2yaxqgvrRPdQ1LQFnvW1iVSe","note":"sample"}
 {"ts":"2026-03-12T23:01:00+09:00","stage":"P0","action":"deploy","network":"devnet","status":"ok","tx_hash":"2KF33iXeFbsCwZRc7nBjnAJVB8JfyvuJHZZbZtsubY7joNhfik68U5kpYqfgNTRGVxx3qjN74CDRR21Hqc2J9Ly1","note":"devnet self-transfer evidence"}
