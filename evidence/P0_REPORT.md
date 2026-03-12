@@ -2,9 +2,9 @@
 
 ## Summary
 - Deploy tx: 0
-- Run tx: 0
+- Run tx: 6
 - Patterns: A/B/C
-- Success rate: 0%
+- Success rate: 100%
 
 ## Tx Links
 - deploy:
