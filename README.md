@@ -127,3 +127,22 @@ Each explores how encrypted compute can reduce adversarial behavior while preser
 ```bash
 cp .env.example .env
 bash smoke.sh
+
+## Demo Verification
+
+Run server:
+- cd app
+- npm install
+- npm run dev
+
+Health check:
+- curl http://localhost:3000/health
+
+Demo run:
+- curl -X POST http://localhost:3000/demo-run -H "Content-Type: application/json" -d '{"pattern":"A"}'
+
+Batch evidence (A/B/C):
+- cd app
+- ./run_patterns.sh
+- tail -n 12 logs/demo.jsonl
+
