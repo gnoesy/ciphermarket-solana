@@ -110,3 +110,20 @@ Other experiments built around the same idea:
 - **SealedBid** — blind auctions where bids remain encrypted until resolution
 
 Each explores how encrypted compute can reduce adversarial behavior while preserving transparent settlement.
+
+## Quick Start (Boot Template)
+# ciphermarket-solana boot template (초보자용)
+
+이 저장소는 **코드 실행 준비 1~3단계**를 빠르게 끝내기 위한 템플릿입니다.
+
+## 0) 여기서 하는 일
+- `.env.example` 준비
+- `.env` 로컬 생성 (비밀값은 로컬만)
+- `smoke.sh`로 준비상태 확인
+
+---
+
+## 1) 복붙 순서
+```bash
+cp .env.example .env
+bash smoke.sh
