@@ -13,3 +13,4 @@
 {"ts":"2026-03-12T14:31:30.300Z","action":"demo-run","input":{"pattern":"A"},"status":"fail","tx_hash":"err_1773325890301","note":"WALLET_PUBLIC_KEY missing"}
 {"ts":"2026-03-12T14:32:12.535Z","action":"demo-run","input":{"pattern":"A"},"status":"fail","tx_hash":"err_1773325932537","note":"signature parse failed"}
 {"ts":"2026-03-12T14:33:26.976Z","action":"demo-run","input":{"pattern":"A"},"status":"ok","tx_hash":"2QpenTVekTZCj1gCob4gSkk9XL4ydmhkxp6bzU7BhptMCybh81yYM3A2eN2qmcstEWuCpdD7v8mrCkEpDNWmcb8G","note":""}
+{"ts":"2026-03-12T14:35:56.441Z","action":"demo-run","input":{"pattern":"B"},"status":"ok","tx_hash":"3mi4som61oLEreo6WgbKCV71PgxHQFyPvQHuijQBr19g7BDX7dU5MSCdYGPhKsCNaknyoXWSwsSpHvuKjPzFvQGd","note":""}
