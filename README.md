@@ -146,3 +146,6 @@ Batch evidence (A/B/C):
 - ./run_patterns.sh
 - tail -n 12 logs/demo.jsonl
 
+
+Metrics check:
+- curl http://localhost:3000/evidence-summary
