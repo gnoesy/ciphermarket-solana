@@ -1,0 +1,4 @@
+{"ts":"2026-03-12T17:40:00+09:00","stage":"P0","action":"deploy","network":"devnet","status":"pending","tx_hash":"","note":"MXE deploy placeholder"}
+{"ts":"2026-03-12T17:40:10+09:00","stage":"P0","action":"run","pattern":"A","status":"ok","tx_hash":"demo_placeholder_A"}
+{"ts":"2026-03-12T17:40:20+09:00","stage":"P0","action":"run","pattern":"B","status":"ok","tx_hash":"demo_placeholder_B"}
+{"ts":"2026-03-12T17:40:30+09:00","stage":"P0","action":"run","pattern":"C","status":"ok","tx_hash":"demo_placeholder_C"}
