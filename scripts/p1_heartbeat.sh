@@ -6,7 +6,6 @@ TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 STATUS="ok"
 NOTE="demo service heartbeat"
 
-# health check
 if ! curl -fsS http://localhost:3000/health >/dev/null; then
 STATUS="fail"
 NOTE="health check failed"
