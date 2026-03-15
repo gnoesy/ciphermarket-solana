@@ -149,3 +149,7 @@ Batch evidence (A/B/C):
 
 Metrics check:
 - curl http://localhost:3000/evidence-summary
+
+# Scope Guard
+- This repo is ARCIUM ONLY.
+- Do not add predict.fun logic/files here.
