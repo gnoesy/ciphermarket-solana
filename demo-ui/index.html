@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CipherMarket Demo</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background:#0b1020; color:#e8edff; margin:0; padding:32px; }
+.card { max-width:860px; margin:0 auto; background:#141c33; border:1px solid #31406a; border-radius:14px; padding:24px; }
+h1 { margin-top:0; }
+button { background:#3b82f6; color:white; border:0; padding:10px 16px; border-radius:10px; cursor:pointer; }
+pre { background:#0a1226; padding:14px; border-radius:10px; overflow:auto; }
+.muted { opacity:.8; font-size:14px; }
+</style>
+</head>
+<body>
+<div class="card">
+<h1>CipherMarket 제출용 데모</h1>
+<p class="muted">입력 없이 실행 버튼만으로 데모 런을 호출하고 결과를 표시합니다.</p>
+<button id="runBtn">데모 실행</button>
+<p id="status" class="muted">대기 중</p>
+<pre id="out">{}</pre>
+</div>
+
+<script>
+const runBtn = document.getElementById('runBtn');
+const out = document.getElementById('out');
+const statusEl = document.getElementById('status');
+
+runBtn.onclick = async () => {
+try {
+statusEl.textContent = '실행 중...';
+runBtn.disabled = true;
+const r = await fetch('/demo-run', { method:'POST' });
+const j = await r.json();
+out.textContent = JSON.stringify(j, null, 2);
+statusEl.textContent = '완료';
+} catch (e) {
+out.textContent = JSON.stringify({ error: String(e) }, null, 2);
+statusEl.textContent = '실패';
+} finally {
+runBtn.disabled = false;
+}
+};
+</script>
+</body>
+</html>
