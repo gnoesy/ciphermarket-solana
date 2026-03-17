@@ -1,95 +1,90 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CipherMarket Demo</title>
+<title>CipherMarket Interactive Demo</title>
 <style>
-body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#0b1020;color:#eaf0ff;margin:0;padding:24px}
-.wrap{max-width:980px;margin:0 auto}
-.card{background:#141c33;border:1px solid #334a7a;border-radius:12px;padding:16px;margin-bottom:14px}
-h1,h2{margin:0 0 10px}
-button{background:#3b82f6;color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer}
-pre{background:#0a1226;border-radius:8px;padding:10px;overflow:auto}
-.muted{opacity:.8}
-.flow{line-height:1.8}
+body{background:#0b1020;color:#eaf0ff;font-family:sans-serif;padding:20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{border:1px solid #32466f;border-radius:10px;padding:12px;background:#141c33}
+.k{font-size:13px;color:#9fb2dc}.v{font-size:18px;margin:4px 0 10px}
+button{background:#2563eb;color:#fff;border:0;border-radius:8px;padding:10px 14px;cursor:pointer}
+.mask{letter-spacing:2px}
+.ok{color:#22c55e}.warn{color:#f59e0b}
+pre{background:#0a1226;border:1px solid #22345b;border-radius:8px;padding:10px}
 </style>
 </head>
 <body>
-<div class="wrap">
-<h1>CipherMarket — Encrypted Execution Demo</h1>
-<p class="muted">Prediction execution stays confidential. Only final outcome + settlement evidence are revealed.</p>
+<h1>CipherMarket: Behavior Demo</h1>
+<p>Click once and watch how baseline leaks mid-state while Cipher keeps execution confidential.</p>
+<button id="run">Run Side-by-Side</button>
+<span id="st" class="k">idle</span>
 
+<div class="grid" style="margin-top:14px">
 <div class="card">
-<h2>Execution Flow</h2>
-<div class="flow">
-User prediction<br/>
-↓<br/>
-Encrypted submission<br/>
-↓<br/>
-Arcium MXE confidential computation<br/>
-↓<br/>
-Outcome revealed<br/>
-↓<br/>
-Solana settlement evidence
-</div>
+<h2>Public Market (Baseline)</h2>
+<div class="k">Mid Vote Signal</div><div id="p_vote" class="v">-</div>
+<div class="k">Stake Size</div><div id="p_stake" class="v">-</div>
+<div class="k">Execution State</div><div id="p_exec" class="v">-</div>
+<div class="k">Final Outcome</div><div id="p_final" class="v">-</div>
 </div>
 
 <div class="card">
-<h2>Run Demo</h2>
-<button id="runA">Run Pattern A</button>
-<span id="status" class="muted" style="margin-left:10px">idle</span>
+<h2>CipherMarket (Encrypted Execution)</h2>
+<div class="k">Mid Vote Signal</div><div id="c_vote" class="v mask">████████</div>
+<div class="k">Stake Size</div><div id="c_stake" class="v mask">████████</div>
+<div class="k">Execution State</div><div id="c_exec" class="v">confidential</div>
+<div class="k">Final Outcome</div><div id="c_final" class="v">-</div>
+<div class="k">Settlement Tx</div><div id="c_tx" class="v">-</div>
+</div>
 </div>
 
-<div class="card">
-<h2>Outcome Reveal (Final Only)</h2>
-<pre id="outcome">{}</pre>
-</div>
-
-<div class="card">
-<h2>Settlement Evidence</h2>
-<pre id="evidence">{}</pre>
-</div>
-</div>
+<h3>Evidence</h3>
+<pre id="ev">{}</pre>
 
 <script>
-const statusEl = document.getElementById('status');
-const outcomeEl = document.getElementById('outcome');
-const evidenceEl = document.getElementById('evidence');
+const $=id=>document.getElementById(id);
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 
-async function runDemo(pattern="A"){
-statusEl.textContent = "running...";
+async function run(){
+$("st").textContent="running...";
+$("p_exec").textContent="collecting public signals";
+await sleep(500);
+
+$("p_vote").textContent="YES 62%";
+$("p_stake").textContent="$148,000";
+$("p_exec").textContent="crowd reacting...";
+await sleep(800);
+
+$("p_vote").textContent="YES 71% (herding)";
+$("p_exec").textContent="manipulable mid-state";
+await sleep(800);
+
+// Cipher path: still masked during execution
+$("c_exec").textContent="processing in Arcium MXE";
+await sleep(700);
+
+// final reveal only
+let tx = null;
 try{
-const runRes = await fetch("http://localhost:3000/demo-run", {
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body: JSON.stringify({ pattern })
-});
-const runJson = await runRes.json();
-
-const sumRes = await fetch("http://localhost:3000/evidence-summary");
-const sumJson = await sumRes.json();
-
-const outcome = {
-ts: runJson.ts || new Date().toISOString(),
-execution_state: "confidential",
-final_status: runJson.status,
-revealed_fields: {
-tx_hash: runJson.tx_hash || null,
-note: runJson.note || ""
-}
-};
-
-outcomeEl.textContent = JSON.stringify(outcome, null, 2);
-evidenceEl.textContent = JSON.stringify(sumJson, null, 2);
-statusEl.textContent = "done";
+const r = await fetch("http://localhost:3000/demo-run",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({pattern:"A"})});
+const j = await r.json();
+tx = j.tx_hash || null;
+$("c_final").innerHTML = `<span class="ok">${(j.status||"ok").toUpperCase()}</span>`;
+$("c_tx").textContent = tx ? (tx.slice(0,10)+"..."+tx.slice(-10)) : "-";
+$("p_final").innerHTML = `<span class="warn">YES (influenced path)</span>`;
+const e = await fetch("http://localhost:3000/evidence-summary");
+$("ev").textContent = JSON.stringify(await e.json(),null,2);
 }catch(e){
-statusEl.textContent = "failed";
-outcomeEl.textContent = JSON.stringify({error:String(e)}, null, 2);
-}
+$("c_final").textContent="error";
+$("ev").textContent=JSON.stringify({error:String(e)},null,2);
 }
 
-document.getElementById('runA').onclick = () => runDemo("A");
+$("c_exec").textContent="final-only reveal complete";
+$("st").textContent="done";
+}
+$("run").onclick=run;
 </script>
 </body>
 </html>
